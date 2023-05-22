@@ -8,7 +8,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Vantran\\NhamBaseTerms\\": "src/"
+            "VanTran\\NhamBaseTerms\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "authors": [
