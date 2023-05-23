@@ -8,7 +8,7 @@ use VanTran\NhamBaseTerms\Terms\ElementTerm;
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms\Factories
  */
-class ElementTermFactory extends AbstractSingletonTermFactory
+class ElementTermFactory extends AbstractTermFactory
 {
     public const TERM_CLASS = ElementTerm::class;
 

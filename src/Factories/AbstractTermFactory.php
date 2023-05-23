@@ -14,18 +14,11 @@ use VanTran\NhamBaseTerms\Contracts\TermInterface;
 abstract class AbstractTermFactory
 {
     /**
-     * Xác định vùng chứa đối tượng theo cấu trúc Singleton
-     */
-    protected const SINGLETON = true;
-
-    /**
      * Xác định lớp cơ sở cho đối tượng mục tiêu, chẳng hạn địa chi, thiên can, âm dương...
      * 
      * @return string 
      */
     abstract protected function getTermClass(): string;
-
-    abstract protected function isSingleton(): bool;
 
     /**
      * @var TermInterface[]
@@ -75,9 +68,7 @@ abstract class AbstractTermFactory
      */
     protected function isTermInitialized(string|int $key): bool
     {
-        return ($this->isSingleton())
-            ? isset(self::$singletons[$key])
-            : isset($this->terms[$key]);
+        return isset($this->terms[$key]);
     }
 
     /**
@@ -89,9 +80,9 @@ abstract class AbstractTermFactory
      */
     protected function setTerm(string|int $key, TermInterface $term): self
     {
-        (!$this->isTermInitialized($key))
-            ? self::$singletons[$key] = $term
-            : $this->terms[$key] = $term;
+        if (!$this->isTermInitialized($key)) {
+            $this->terms[$key] = $term;
+        }
         
         return $this;
     }
@@ -107,11 +98,7 @@ abstract class AbstractTermFactory
     public function getTerm(int|string $key): TermInterface
     {
         if (!$this->isTermInitialized($key)) {
-            $terms = ($this->isSingleton())
-                ? self::$singletons
-                : $this->terms;
-
-            foreach ($terms as $term) {
+            foreach ($this->terms as $term) {
                 if (
                     $key === $term->getIndex() ||
                     $key === $term->getKey() ||
@@ -134,8 +121,6 @@ abstract class AbstractTermFactory
             return $term;
         }
 
-        return ($this->isSingleton())
-            ? self::$singletons[$key]
-            : $this->terms[$key];
+        return $this->terms[$key];
     }
 }

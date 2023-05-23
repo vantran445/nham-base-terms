@@ -42,6 +42,11 @@ class Element
         return self::term($name);
     }
 
+    public function __call($name, $arguments): ElementInterface
+    {
+        return $this->term($name);
+    }
+
     /**
      * Trả về đối tượng mục tiêu trong nhóm Ngũ hành
      * 

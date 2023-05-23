@@ -36,4 +36,17 @@ class ElementTest extends TestCase
         $this->assertTrue($term === Element::metal());
         $this->assertTrue($term === Element::d());
     }
+
+    /**
+     * @covers Element
+     * 
+     * @return void 
+     * @throws ExpectationFailedException 
+     */
+    public function testNewInstance(): void
+    {
+        $el = new Element();
+
+        $this->assertTrue(Element::earth() === $el->earth());
+    }
 }
