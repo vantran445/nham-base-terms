@@ -11,12 +11,6 @@ use VanTran\NhamBaseTerms\Factories\ElementTermFactory;
  * @method static Terms\ElementTerm metal()
  * @method static Terms\ElementTerm water()
  * 
- * @method static Terms\ElementTerm kim()
- * @method static Terms\ElementTerm moc()
- * @method static Terms\ElementTerm thuy()
- * @method static Terms\ElementTerm hoa()
- * @method static Terms\ElementTerm tho()
- * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms
  */
@@ -33,12 +27,23 @@ class Element
         return self::$factory;
     }
 
+    /**
+     * Trả về đối tượng trong nhóm ngũ hành thông qua magic call, ví dụ,muốn lấy hành Kim chỉ cần gọi Element::metal().
+     * Các phương thức được hỗ trợ gợi ý gõ dưới dạng tiếng Anh, nhưng cũng có thể được gọi ra thông qua tiếng Việt, 
+     * chẳng hạn hành hỏa Element:fire() tương đương với Element::hoa()
+     * 
+     * @param string $name 
+     * @param mixed $arguments 
+     * @return ElementInterface 
+     * @throws Throwable 
+     */
     public static function __callStatic($name, $arguments): ElementInterface
     {
         return self::term($name);
     }
 
     /**
+     * Trả về đối tượng mục tiêu trong nhóm Ngũ hành
      * 
      * @param int|string|(callable(): int|string) $attr 
      * @return ElementInterface 
