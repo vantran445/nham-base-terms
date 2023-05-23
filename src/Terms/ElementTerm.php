@@ -15,7 +15,7 @@ use VanTran\NhamBaseTerms\Traits\HasKeyTrait;
 #[ElementAttribute(1, 'a', ['moc', 'wood'])]
 #[ElementAttribute(2, 'b', ['hoa', 'fire'])]
 #[ElementAttribute(3, 'c', ['tho', 'earth'])]
-#[ElementAttribute(4, 'd', ['kim', ',metal'])]
+#[ElementAttribute(4, 'd', ['kim', 'metal'])]
 #[ElementAttribute(5, 'e', ['thuy', 'water'])]
 final class ElementTerm implements ElementInterface
 {
