@@ -2,19 +2,49 @@
 
 use Exception;
 use ReflectionClass;
+use ReflectionException;
 use VanTran\NhamBaseTerms\Contracts\TermInterface;
 
+/**
+ * Lớp trừu tượng sản xuất 1 đối tượng cơ bản
+ * 
+ * @author Văn Trần <caovan.info@gmail.com>
+ * @package VanTran\NhamBaseTerms\Factories
+ */
 abstract class AbstractTermFactory
 {
-    abstract protected function getTermClass(): string;
+    /**
+     * Xác định vùng chứa đối tượng theo cấu trúc Singleton
+     */
+    protected const SINGLETON = true;
 
     /**
+     * Xác định lớp cơ sở cho đối tượng mục tiêu, chẳng hạn địa chi, thiên can, âm dương...
      * 
+     * @return string 
+     */
+    abstract protected function getTermClass(): string;
+
+    abstract protected function isSingleton(): bool;
+
+    /**
      * @var TermInterface[]
      */
     private $terms = [];
 
-    private function makeTerm(string|int $key): null|TermInterface
+    /**
+     * @var TermInterface[]
+     */
+    private static $singletons = [];
+
+    /**
+     * Khởi tạo một đối tượng
+     * 
+     * @param string|int $key 
+     * @return null|TermInterface 
+     * @throws ReflectionException 
+     */
+    protected function makeTerm(string|int $key): null|TermInterface
     {
         $ref = new ReflectionClass($this->getTermClass());
         $attributes = $ref->getAttributes();
@@ -37,24 +67,51 @@ abstract class AbstractTermFactory
         return (isset($term)) ? $term : null;
     }
 
-    private function hasTerm(string|int $key): bool
+    /**
+     * Kiểm tra 1 đối tượng đã được khởi tạo và đệm hay chưa
+     * 
+     * @param string|int $key 
+     * @return bool 
+     */
+    protected function isTermInitialized(string|int $key): bool
     {
-        return isset($this->terms[$key]);
+        return ($this->isSingleton())
+            ? isset(self::$singletons[$key])
+            : isset($this->terms[$key]);
     }
 
-    public function setTerm(string|int $key, TermInterface $term): self
+    /**
+     * Lưu 1 đối tượng đã được khởi tạo
+     * 
+     * @param string|int $key 
+     * @param TermInterface $term 
+     * @return AbstractTermFactory 
+     */
+    protected function setTerm(string|int $key, TermInterface $term): self
     {
-        if (!isset($this->terms[$key])) {
-            $this->terms[$key] = $term;
-        }
+        (!$this->isTermInitialized($key))
+            ? self::$singletons[$key] = $term
+            : $this->terms[$key] = $term;
         
         return $this;
     }
 
+    /**
+     * Trả về đối tượng mục tiêu
+     * 
+     * @param int|string $key 
+     * @return TermInterface 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
     public function getTerm(int|string $key): TermInterface
     {
-        if (!$this->hasTerm($key)) {
-            foreach ($this->terms as $term) {
+        if (!$this->isTermInitialized($key)) {
+            $terms = ($this->isSingleton())
+                ? self::$singletons
+                : $this->terms;
+
+            foreach ($terms as $term) {
                 if (
                     $key === $term->getIndex() ||
                     $key === $term->getKey() ||
@@ -77,6 +134,8 @@ abstract class AbstractTermFactory
             return $term;
         }
 
-        return $this->terms[$key];
+        return ($this->isSingleton())
+            ? self::$singletons[$key]
+            : $this->terms[$key];
     }
 }
