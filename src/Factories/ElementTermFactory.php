@@ -1,9 +1,14 @@
 <?php namespace VanTran\NhamBaseTerms\Factories;
 
-use VanTran\NhamBaseTerms\Contracts\TermInterface;
 use VanTran\NhamBaseTerms\Terms\ElementTerm;
 
-class ElementTermFactory extends AbstractTermFactory
+/**
+ * Lớp sản xuất 1 đối tượng trong nhóm ngũ hành theo cấu trúc Singleton.
+ * 
+ * @author Văn Trần <caovan.info@gmail.com>
+ * @package VanTran\NhamBaseTerms\Factories
+ */
+class ElementTermFactory extends AbstractSingletonTermFactory
 {
     public const TERM_CLASS = ElementTerm::class;
 
