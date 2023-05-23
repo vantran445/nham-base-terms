@@ -2,9 +2,6 @@
 
 use VanTran\NhamBaseTerms\Attributes\ElementAttribute;
 use VanTran\NhamBaseTerms\Contracts\ElementInterface;
-use VanTran\NhamBaseTerms\Traits\HasAliasTrait;
-use VanTran\NhamBaseTerms\Traits\HasIndexTrait;
-use VanTran\NhamBaseTerms\Traits\HasKeyTrait;
 
 /**
  * Ngũ hành
@@ -17,18 +14,7 @@ use VanTran\NhamBaseTerms\Traits\HasKeyTrait;
 #[ElementAttribute(3, 'c', ['tho', 'earth'])]
 #[ElementAttribute(4, 'd', ['kim', 'metal'])]
 #[ElementAttribute(5, 'e', ['thuy', 'water'])]
-final class ElementTerm implements ElementInterface
+final class ElementTerm extends AbstractTerm implements ElementInterface
 {
-    use HasIndexTrait;
-    use HasKeyTrait;
-    use HasAliasTrait;
 
-    public function __construct(
-        public readonly int $index,
-        public readonly string $key,
-        protected array $alias = []
-    )
-    {
-        
-    }
 }
