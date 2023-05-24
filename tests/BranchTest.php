@@ -1,108 +1,62 @@
-<?php namespace VanTran\NhamBaseTerms\Tests;
+<?php namespace VanTran\NhamBaseTerms\Terms;
 
 use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Throwable;
-use VanTran\NhamBaseTerms\BranchFactory;
-use VanTran\NhamBaseTerms\Terms\BranchTerm;
+use ReflectionException;
+use VanTran\NhamBaseTerms\Branch;
 
 class BranchTest extends TestCase
 {
     /**
-     * @covers Branch
-     * 
-     * @return void 
-     * @throws Exception 
-     * @throws Throwable 
-     * @throws ExpectationFailedException 
+     * @var Branch
      */
-    public function testGetTerm(): void
+    private $branches;
+
+    public function setup(): void
     {
-        $branch = new BranchFactory();
-
-        $b = $branch->term('b');
-        $b2 = $branch->term(1);
-
-        $this->assertTrue($b === $b2);
+        $this->branches = new Branch();
     }
 
     /**
      * @covers Branch
      * 
      * @return void 
+     * @throws ReflectionException 
      * @throws Exception 
-     * @throws Throwable 
      * @throws ExpectationFailedException 
      */
-    public function testGetAllTerms(): void
+    public function testSingleton(): void
     {
-        $keys = range('a', 'l');
-        $branchs = new BranchFactory();
+        $term1 = $this->branches->term('dan');
+        $term2 = $this->branches->term(3);
 
-        foreach ($keys as $index => $keys) {
-            $term = $branchs->term($keys);
-            $term2 = $branchs->term($index);
-
-            $this->assertTrue($term === $term2);
-            $this->assertEquals($index, $term->index);
-        }
+        $this->assertTrue($term1 === $term2);
     }
 
     /**
      * @covers Branch
      * 
      * @return void 
+     * @throws ReflectionException 
      * @throws Exception 
-     * @throws Throwable 
      * @throws ExpectationFailedException 
      */
-    public function testGetTermFromAlias(): void
+    public function testMagicMethod(): void
     {
-        $branch = new BranchFactory();
-        $term = $branch->term('mao');
-
-        $this->assertEquals(3, $term->element);
+        $this->assertTrue($this->branches->term(12) === $this->branches->pig());
     }
 
     /**
      * @covers Branch
      * 
      * @return void 
+     * @throws ReflectionException 
      * @throws Exception 
-     * @throws Throwable 
      * @throws ExpectationFailedException 
      */
-    public function testSetAlias(): void
+    public function testMagicProp(): void
     {
-        $branch = new BranchFactory();
-        $term = $branch->term('than');
-        $term->setAlias('day_branch');
-
-        $term2 = $branch->term('day_branch');
-        $this->assertTrue($term === $term2);
-    }
-
-    /**
-     * @covers Branch
-     * 
-     * @return void 
-     * @throws Exception 
-     * @throws Throwable 
-     * @throws ExpectationFailedException 
-     */
-    public function testAssociate(): void
-    {
-        $branch = new BranchFactory();
-        $hoi = $branch->term('hoi');
-        $dan = $branch->term('c');
-
-        $this->assertNull($hoi->getAttribute('love'));
-
-        $hoi->setAttribute('love', $branch->term('dan'));
-        
-        $this->assertInstanceOf(BranchTerm::class, $hoi->getAttribute('love'));
-        $this->assertTrue($hoi->getAttribute('love') === $dan);
-        $this->assertTrue($dan === $hoi->love);
+        $this->assertTrue($this->branches->term(7) === $this->branches->horse);
     }
 }
