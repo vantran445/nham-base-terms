@@ -25,4 +25,15 @@ trait HasAliasTrait
         $this->alias = array_merge($this->getAlias(), $alias);
         return $this;
     }
+
+    /**
+     * Kiểm tra 1 đối tượng có bí danh mong muốn không
+     * 
+     * @param string $alias 
+     * @return bool 
+     */
+    public function hasAlias(string $alias): bool
+    {
+        return in_array($alias, $this->getAlias());
+    }
 }

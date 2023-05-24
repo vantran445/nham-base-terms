@@ -1,6 +1,5 @@
 <?php namespace VanTran\NhamBaseTerms\Factories;
 
-use VanTran\NhamBaseTerms\Contracts\SexagenaryTermInterface;
 use VanTran\NhamBaseTerms\Terms\BranchTerm;
 
 class BranchTermFactory extends AbstractTermFactory
@@ -15,7 +14,7 @@ class BranchTermFactory extends AbstractTermFactory
     /**
      * {@inheritdoc}
      */
-    public function getTerm(int|string $key): SexagenaryTermInterface
+    public function getTerm(int|string $key): BranchTerm
     {
         return parent::getTerm($key);
     }
