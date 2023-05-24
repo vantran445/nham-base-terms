@@ -6,6 +6,19 @@ use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
 use VanTran\NhamBaseTerms\Terms\BranchTerm;
 
 /**
+ * @property Terms\BranchTerm rat
+ * @property Terms\BranchTerm buffalo
+ * @property Terms\BranchTerm tiger
+ * @property Terms\BranchTerm cat
+ * @property Terms\BranchTerm dragon
+ * @property Terms\BranchTerm snake
+ * @property Terms\BranchTerm horse
+ * @property Terms\BranchTerm goat
+ * @property Terms\BranchTerm monkey
+ * @property Terms\BranchTerm rooster
+ * @property Terms\BranchTerm dog
+ * @property Terms\BranchTerm pig
+ * 
  * @method Terms\BranchTerm rat()
  * @method Terms\BranchTerm buffalo()
  * @method Terms\BranchTerm tiger()
