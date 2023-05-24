@@ -6,27 +6,27 @@ use VanTran\NhamBaseTerms\Factories\StemTermFactory;
 use VanTran\NhamBaseTerms\Terms\StemTerm;
 
 /**
- * @property Terms\StemTerm forest
- * @property Terms\StemTerm grass
- * @property Terms\StemTerm firepower
- * @property Terms\StemTerm sparks
- * @property Terms\StemTerm fertile
- * @property Terms\StemTerm barren
- * @property Terms\StemTerm hardmetal
- * @property Terms\StemTerm rawmetal
- * @property Terms\StemTerm ocean
- * @property Terms\StemTerm rainwater
+ * @property Terms\StemTerm giap
+ * @property Terms\StemTerm at
+ * @property Terms\StemTerm binh
+ * @property Terms\StemTerm dinh
+ * @property Terms\StemTerm mau
+ * @property Terms\StemTerm ky
+ * @property Terms\StemTerm canh
+ * @property Terms\StemTerm tan
+ * @property Terms\StemTerm nham
+ * @property Terms\StemTerm quy
  * 
- * @method Terms\StemTerm forest()
- * @method Terms\StemTerm grass()
- * @method Terms\StemTerm firepower()
- * @method Terms\StemTerm sparks()
- * @method Terms\StemTerm fertile()
- * @method Terms\StemTerm barren()
- * @method Terms\StemTerm hardmetal()
- * @method Terms\StemTerm rawmetal()
- * @method Terms\StemTerm ocean()
- * @method Terms\StemTerm rainwater()
+ * @method Terms\StemTerm giap()
+ * @method Terms\StemTerm at()
+ * @method Terms\StemTerm binh()
+ * @method Terms\StemTerm dinh()
+ * @method Terms\StemTerm mau()
+ * @method Terms\StemTerm ky()
+ * @method Terms\StemTerm canh()
+ * @method Terms\StemTerm tan()
+ * @method Terms\StemTerm nham()
+ * @method Terms\StemTerm quy()
  * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms

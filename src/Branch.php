@@ -6,31 +6,31 @@ use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
 use VanTran\NhamBaseTerms\Terms\BranchTerm;
 
 /**
- * @property Terms\BranchTerm rat
- * @property Terms\BranchTerm buffalo
- * @property Terms\BranchTerm tiger
- * @property Terms\BranchTerm cat
- * @property Terms\BranchTerm dragon
- * @property Terms\BranchTerm snake
- * @property Terms\BranchTerm horse
- * @property Terms\BranchTerm goat
- * @property Terms\BranchTerm monkey
- * @property Terms\BranchTerm rooster
- * @property Terms\BranchTerm dog
- * @property Terms\BranchTerm pig
+ * @property Terms\BranchTerm ty
+ * @property Terms\BranchTerm suu
+ * @property Terms\BranchTerm dan
+ * @property Terms\BranchTerm mao
+ * @property Terms\BranchTerm thin
+ * @property Terms\BranchTerm ti
+ * @property Terms\BranchTerm ngo
+ * @property Terms\BranchTerm mui
+ * @property Terms\BranchTerm than
+ * @property Terms\BranchTerm dau
+ * @property Terms\BranchTerm tuat
+ * @property Terms\BranchTerm hoi
  * 
- * @method Terms\BranchTerm rat()
- * @method Terms\BranchTerm buffalo()
- * @method Terms\BranchTerm tiger()
- * @method Terms\BranchTerm cat()
- * @method Terms\BranchTerm dragon()
- * @method Terms\BranchTerm snake()
- * @method Terms\BranchTerm horse()
- * @method Terms\BranchTerm goat()
- * @method Terms\BranchTerm monkey()
- * @method Terms\BranchTerm rooster()
- * @method Terms\BranchTerm dog()
- * @method Terms\BranchTerm pig()
+ * @method Terms\BranchTerm ty()
+ * @method Terms\BranchTerm suu()
+ * @method Terms\BranchTerm dan()
+ * @method Terms\BranchTerm mao()
+ * @method Terms\BranchTerm thin()
+ * @method Terms\BranchTerm ti()
+ * @method Terms\BranchTerm ngo()
+ * @method Terms\BranchTerm mui()
+ * @method Terms\BranchTerm than()
+ * @method Terms\BranchTerm dau()
+ * @method Terms\BranchTerm tuat()
+ * @method Terms\BranchTerm hoi()
  * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms

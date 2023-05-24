@@ -5,11 +5,11 @@ use VanTran\NhamBaseTerms\Contracts\ElementInterface;
 use VanTran\NhamBaseTerms\Factories\ElementTermFactory;
 
 /**
- * @method static Terms\ElementTerm wood()
- * @method static Terms\ElementTerm fire()
- * @method static Terms\ElementTerm earth()
- * @method static Terms\ElementTerm metal()
- * @method static Terms\ElementTerm water()
+ * @method static Terms\ElementTerm moc()
+ * @method static Terms\ElementTerm hoa()
+ * @method static Terms\ElementTerm tho()
+ * @method static Terms\ElementTerm kim()
+ * @method static Terms\ElementTerm thuy()
  * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms

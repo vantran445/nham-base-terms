@@ -5,8 +5,8 @@ use VanTran\NhamBaseTerms\Contracts\TendencyInterface;
 use VanTran\NhamBaseTerms\Factories\TendencyTermFactory;
 
 /**
- * @method static Terms\TendencyTerm posive()
- * @method static Terms\TendencyTerm negative()
+ * @method static Terms\TendencyTerm duong()
+ * @method static Terms\TendencyTerm am()
  * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms
