@@ -8,10 +8,10 @@ use VanTran\NhamBaseTerms\Attributes\SexagenaryTermAttribute;
 #[SexagenaryTermAttribute(4, 'd', 2, 2, ['dinh', 'sparks'])]
 #[SexagenaryTermAttribute(5, 'e', 3, 1, ['mau', 'fertile'])]
 #[SexagenaryTermAttribute(6, 'f', 3, 2, ['ky', 'barren'])]
-#[SexagenaryTermAttribute(7, 'g', 4, 1, ['canh', 'hard_metal'])]
-#[SexagenaryTermAttribute(8, 'h', 4, 2, ['tan', 'metal_ores'])]
+#[SexagenaryTermAttribute(7, 'g', 4, 1, ['canh', 'hardmetal'])]
+#[SexagenaryTermAttribute(8, 'h', 4, 2, ['tan', 'rawmetal'])]
 #[SexagenaryTermAttribute(9, 'i', 5, 1, ['nham', 'ocean'])]
-#[SexagenaryTermAttribute(10, 'j', 5, 2, ['quy', 'rain_water'])]
+#[SexagenaryTermAttribute(10, 'j', 5, 2, ['quy', 'rainwater'])]
 class StemTerm extends AbstractSexagenaryTerm
 {
 
