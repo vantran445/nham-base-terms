@@ -18,7 +18,7 @@ class ElementTest extends TestCase
     {
         $term = Element::term('water');
 
-        $this->assertEquals(5, $term->getIndex());
+        $this->assertEquals(5, $term->getOrder());
         $this->assertTrue($term === Element::term('e'));
     }
 
@@ -32,7 +32,7 @@ class ElementTest extends TestCase
     {
         $term = Element::kim();
 
-        $this->assertEquals(4, $term->getIndex());
+        $this->assertEquals(4, $term->getOrder());
         $this->assertTrue($term === Element::metal());
         $this->assertTrue($term === Element::d());
     }

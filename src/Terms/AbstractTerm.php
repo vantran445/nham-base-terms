@@ -2,17 +2,17 @@
 
 use VanTran\NhamBaseTerms\Contracts\TermInterface;
 use VanTran\NhamBaseTerms\Traits\HasAliasTrait;
-use VanTran\NhamBaseTerms\Traits\HasIndexTrait;
+use VanTran\NhamBaseTerms\Traits\HasOrderTrait;
 use VanTran\NhamBaseTerms\Traits\HasKeyTrait;
 
 abstract class AbstractTerm implements TermInterface
 {
-    use HasIndexTrait;
+    use HasOrderTrait;
     use HasKeyTrait;
     use HasAliasTrait;
 
     public function __construct(
-        public readonly int $index,
+        public readonly int $order,
         public readonly string $key,
         protected array $alias = []
     )

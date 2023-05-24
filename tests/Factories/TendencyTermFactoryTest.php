@@ -62,7 +62,7 @@ class TendencyTermFactoryTest extends TestCase
         $term = $this->factory()->getTerm('b');
 
 
-        $this->assertEquals(2, $term->getIndex());
+        $this->assertEquals(2, $term->getOrder());
         $this->assertTrue(in_array('am', $term->getAlias()));
         $this->assertTrue(in_array('negative', $term->getAlias()));
         $this->assertTrue(in_array('yin', $term->getAlias()));
@@ -80,7 +80,7 @@ class TendencyTermFactoryTest extends TestCase
     {
         $term = $this->factory()->getTerm('am');
 
-        $this->assertEquals(2, $term->getIndex());
+        $this->assertEquals(2, $term->getOrder());
         $this->assertEquals('b', $term->getKey());
     }
 

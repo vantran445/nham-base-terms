@@ -61,7 +61,7 @@ class ElementTermFactoryTest extends TestCase
         $term = $this->factory()->getTerm('b');
 
 
-        $this->assertEquals(2, $term->getIndex());
+        $this->assertEquals(2, $term->getOrder());
         $this->assertTrue(in_array('fire', $term->getAlias()));
     }
 
@@ -77,7 +77,7 @@ class ElementTermFactoryTest extends TestCase
     {
         $term = $this->factory()->getTerm('tho');
 
-        $this->assertEquals(3, $term->getIndex());
+        $this->assertEquals(3, $term->getOrder());
         $this->assertEquals('c', $term->getKey());
     }
 

@@ -1,11 +1,11 @@
 <?php namespace VanTran\NhamBaseTerms\Contracts;
 
-interface HasIndex
+interface HasOrder
 {
     /**
      * Trả về số đại diện cho đối tượng
      * 
      * @return int 
      */
-    public function getIndex(): int;
+    public function getOrder(): int;
 }

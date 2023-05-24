@@ -2,7 +2,6 @@
 
 use Exception;
 use ReflectionClass;
-use VanTran\NhamBaseTerms\Attributes\TermAttribute;
 use VanTran\NhamBaseTerms\Terms\BranchTerm;
 
 class BranchFactory
@@ -12,19 +11,19 @@ class BranchFactory
     private function getNewInstance(mixed $att): BranchTerm
     {
         $ref = new ReflectionClass(BranchTerm::class);
-        $attributes = $ref->getAttributes(TermAttribute::class);
+        $attributes = $ref->getAttributes();
 
         foreach ($attributes as $attribute) {
             $atts = $attribute->newInstance();
 
             if (
-                $att === $atts->index ||
+                $att === $atts->order ||
                 $att === $atts->key ||
                 in_array($att, $atts->alias)
             ) {
                 $atts = $attribute->newInstance();
                 $term = new BranchTerm(
-                    $atts->index,
+                    $atts->order,
                     $atts->key,
                     $atts->element,
                     $atts->yinyang,
@@ -67,7 +66,7 @@ class BranchFactory
 
             try {
                 $term = $this->getNewInstance($att);
-                $this->terms[$term->getIndex()] = $term;
+                $this->terms[$term->getOrder()] = $term;
             } catch (\Throwable $th) {
                 throw $th;
             }

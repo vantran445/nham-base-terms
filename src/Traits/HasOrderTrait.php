@@ -1,12 +1,12 @@
 <?php namespace VanTran\NhamBaseTerms\Traits;
 
-trait HasIndexTrait
+trait HasOrderTrait
 {
     /**
      * {@inheritdoc}
      */
-    public function getIndex(): int
+    public function getOrder(): int
     {
-        return $this->index;
+        return $this->order;
     }
 }

@@ -18,7 +18,7 @@ class TendencyTest extends TestCase
     {
         $term = Tendency::term('yang');
 
-        $this->assertEquals(1, $term->getIndex());
+        $this->assertEquals(1, $term->getOrder());
         $this->assertTrue($term === Tendency::term('a'));
     }
 
@@ -32,7 +32,7 @@ class TendencyTest extends TestCase
     {
         $term = Tendency::negative();
 
-        $this->assertEquals(2, $term->getIndex());
+        $this->assertEquals(2, $term->getOrder());
         $this->assertTrue($term === Tendency::term('b'));
     }
 

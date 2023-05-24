@@ -40,12 +40,12 @@ class BranchTest extends TestCase
         $keys = range('a', 'l');
         $branchs = new BranchFactory();
 
-        foreach ($keys as $index => $keys) {
+        foreach ($keys as $order => $keys) {
             $term = $branchs->term($keys);
-            $term2 = $branchs->term($index);
+            $term2 = $branchs->term($order);
 
             $this->assertTrue($term === $term2);
-            $this->assertEquals($index, $term->index);
+            $this->assertEquals($order, $term->order);
         }
     }
 

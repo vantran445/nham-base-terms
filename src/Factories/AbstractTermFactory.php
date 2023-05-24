@@ -46,7 +46,7 @@ abstract class AbstractTermFactory
             $atts = $attribute->newInstance();
 
             if (
-                $key === $atts->index ||
+                $key === $atts->order ||
                 $key === $atts->key ||
                 in_array($key, $atts->alias)
             ) {
@@ -100,7 +100,7 @@ abstract class AbstractTermFactory
         if (!$this->isTermInitialized($key)) {
             foreach ($this->terms as $term) {
                 if (
-                    $key === $term->getIndex() ||
+                    $key === $term->getOrder() ||
                     $key === $term->getKey() ||
                     in_array($key, $term->getAlias())
                 ) {
