@@ -4,6 +4,7 @@ use ReflectionException;
 use Exception;
 use VanTran\NhamBaseTerms\Factories\StarTermFactory;
 use VanTran\NhamBaseTerms\Terms\StarTerm;
+use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
 
 /**
  * @property Terms\StarTerm quy
@@ -37,6 +38,8 @@ use VanTran\NhamBaseTerms\Terms\StarTerm;
  */
 class Star
 {
+    use TermLoopableTrait;
+    
     /**
      * @var StarTermFactory Lớp khởi tạo các đối tượng trong nhóm thiên can
      */
@@ -80,5 +83,23 @@ class Star
     public function term(string|int $key): StarTerm
     {
         return $this->factory->getTerm($key);
+    }
+
+    /**
+     * Trả về toàn bộ 12 thiên tướng
+     * 
+     * @return array 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function all(): array
+    {
+        $terms = [];
+
+        for ($i = 1; $i <= 12; $i ++) {
+            array_push($terms, $this->term($i));
+        }
+
+        return $terms;
     }
 }

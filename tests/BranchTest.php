@@ -59,4 +59,45 @@ class BranchTest extends TestCase
     {
         $this->assertTrue($this->branches->term(7) === $this->branches->horse);
     }
+
+    /**
+     * @covers Branch
+     * 
+     * @return void 
+     * @throws ReflectionException 
+     * @throws Exception 
+     * @throws ExpectationFailedException 
+     */
+    public function testGetAll(): void
+    {
+        $terms = $this->branches->all();
+        $keys = range('a', 'l');
+
+        foreach ($terms as $index => $terms) {
+            $this->assertEquals($keys[$index], $terms->getKey());
+        }
+    }
+
+    /**
+     * @covers Branch
+     * 
+     * @return void 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function testLoopThrough(): void
+    {
+        $keys = range('a', 'l');
+        $index = 0;
+
+        $this->branches->each(function (BranchTerm $term) use (&$index, $keys) {
+            $term->setAlias('term_' . $index + 1);
+            $this->assertEquals($keys[$index], $term->getKey());
+
+            $index ++;
+        });
+
+        $term = $this->branches->term('term_2');
+        $this->assertTrue($term->hasAlias('suu'));
+    }
 }

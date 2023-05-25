@@ -4,6 +4,7 @@ use ReflectionException;
 use Exception;
 use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
 use VanTran\NhamBaseTerms\Terms\BranchTerm;
+use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
 
 /**
  * @property Terms\BranchTerm ty
@@ -37,6 +38,8 @@ use VanTran\NhamBaseTerms\Terms\BranchTerm;
  */
 class Branch
 {
+    use TermLoopableTrait;
+    
     /**
      * @var BranchTermFactory Lớp khởi tạo các đối tượng trong nhóm địa chi
      */
@@ -80,5 +83,23 @@ class Branch
     public function term(string|int $key): BranchTerm
     {
         return $this->factory->getTerm($key);
+    }
+
+    /**
+     * Trả về toàn bộ 12 địa chi
+     * 
+     * @return array 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function all(): array
+    {
+        $terms = [];
+
+        for ($i = 1; $i <= 12; $i ++) {
+            array_push($terms, $this->term($i));
+        }
+
+        return $terms;
     }
 }
