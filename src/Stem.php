@@ -4,6 +4,7 @@ use ReflectionException;
 use Exception;
 use VanTran\NhamBaseTerms\Factories\StemTermFactory;
 use VanTran\NhamBaseTerms\Terms\StemTerm;
+use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
 
 /**
  * @property Terms\StemTerm giap
@@ -33,6 +34,8 @@ use VanTran\NhamBaseTerms\Terms\StemTerm;
  */
 class Stem
 {
+    use TermLoopableTrait;
+    
     /**
      * @var StemTermFactory Lớp khởi tạo các đối tượng trong nhóm thiên can
      */
@@ -76,5 +79,23 @@ class Stem
     public function term(string|int $key): StemTerm
     {
         return $this->factory->getTerm($key);
+    }
+
+    /**
+     * Trả về toàn bộ 10 Thiên can
+     * 
+     * @return array 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function all(): array
+    {
+        $terms = [];
+
+        for ($i = 1; $i <= 10; $i ++) {
+            array_push($terms, $this->term($i));
+        }
+
+        return $terms;
     }
 }
