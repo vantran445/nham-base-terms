@@ -5,6 +5,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 use VanTran\NhamBaseTerms\Branch;
+use VanTran\NhamBaseTerms\Contracts\SexagenaryTermInterface;
 
 class BranchTest extends TestCase
 {
@@ -118,5 +119,20 @@ class BranchTest extends TestCase
 
         $term = $this->branches->term($alias);
         $this->assertEquals('k', $term->getKey());
+    }
+
+    /**
+     * @covers Branch
+     * 
+     * @return void 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function testMappedTerm(): void
+    {
+        $this->assertFalse($this->branches->hasTerm('abcdrd'));
+        $this->branches->term('than')->setAlias('abcdrd');
+        $this->assertInstanceOf(SexagenaryTermInterface::class, $this->branches->term('abcdrd'));
+
     }
 }

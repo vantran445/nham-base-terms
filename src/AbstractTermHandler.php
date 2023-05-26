@@ -2,8 +2,8 @@
 
 use Closure;
 use Exception;
+use VanTran\NhamBaseTerms\Contracts\SexagenaryTermInterface;
 use VanTran\NhamBaseTerms\Factories\AbstractTermFactory;
-use VanTran\NhamBaseTerms\Terms\AbstractSexagenaryTerm;
 
 abstract class AbstractTermHandler
 {
@@ -66,11 +66,11 @@ abstract class AbstractTermHandler
      * Trả về 1 đối tượng trong nhóm
      * 
      * @param string|int|Closure $key 
-     * @return BranchTerm 
+     * @return SexagenaryTermInterface 
      * @throws ReflectionException 
      * @throws Exception 
      */
-    public function term(mixed $key): AbstractSexagenaryTerm
+    public function term(mixed $key): SexagenaryTermInterface
     {
         if ($key instanceof Closure) {
             $key = $key($this);
@@ -126,5 +126,16 @@ abstract class AbstractTermHandler
     {
         $action($this);
         return $this;
+    }
+
+    /**
+     * Kiểm tra 1 đối tượng đã được khởi tạo hoặc ánh xạ hay chưa
+     * 
+     * @param int|string $key 
+     * @return bool 
+     */
+    public function hasTerm(int|string $key): bool
+    {
+        return $this->factory->hasTerm($key);
     }
 }
