@@ -1,10 +1,6 @@
 <?php namespace VanTran\NhamBaseTerms;
 
-use ReflectionException;
-use Exception;
 use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
-use VanTran\NhamBaseTerms\Terms\BranchTerm;
-use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
 
 /**
  * @property Terms\BranchTerm ty
@@ -36,70 +32,21 @@ use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms
  */
-class Branch
+class Branch extends AbstractTermHandler
 {
-    use TermLoopableTrait;
-    
     /**
-     * @var BranchTermFactory Lớp khởi tạo các đối tượng trong nhóm địa chi
+     * {@inheritdoc}
      */
-    private $factory;
-
-    public function __construct()
-    {
-        $this->factory = new BranchTermFactory();
-    }
-
-    public function __call($name, $arguments): ?BranchTerm
-    {
-        try {
-            $term = $this->term($name);
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
-    }
-
-    public function __get($name)
-    {
-        try {
-            $term = $this->$name();
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
+    protected function getDefaultFactoryClass(): string 
+    { 
+        return BranchTermFactory::class;
     }
 
     /**
-     * Trả về 1 đối tượng trong nhóm 12 địa chi
-     * 
-     * @param string|int $key 
-     * @return BranchTerm 
-     * @throws ReflectionException 
-     * @throws Exception 
+     * {@inheritdoc}
      */
-    public function term(string|int $key): BranchTerm
-    {
-        return $this->factory->getTerm($key);
-    }
-
-    /**
-     * Trả về toàn bộ 12 địa chi
-     * 
-     * @return array 
-     * @throws ReflectionException 
-     * @throws Exception 
-     */
-    public function all(): array
-    {
-        $terms = [];
-
-        for ($i = 1; $i <= 12; $i ++) {
-            array_push($terms, $this->term($i));
-        }
-
-        return $terms;
+    protected function getTotalTerms(): int 
+    { 
+        return 12;
     }
 }

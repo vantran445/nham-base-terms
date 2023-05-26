@@ -1,10 +1,6 @@
 <?php namespace VanTran\NhamBaseTerms;
 
-use ReflectionException;
-use Exception;
 use VanTran\NhamBaseTerms\Factories\StemTermFactory;
-use VanTran\NhamBaseTerms\Terms\StemTerm;
-use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
 
 /**
  * @property Terms\StemTerm giap
@@ -32,70 +28,22 @@ use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms
  */
-class Stem
+class Stem extends AbstractTermHandler
 {
-    use TermLoopableTrait;
-    
     /**
-     * @var StemTermFactory Lớp khởi tạo các đối tượng trong nhóm thiên can
+     * {@inheritdoc}
      */
-    private $factory;
-
-    public function __construct()
-    {
-        $this->factory = new StemTermFactory();
-    }
-
-    public function __call($name, $arguments): ?StemTerm
-    {
-        try {
-            $term = $this->term($name);
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
-    }
-
-    public function __get($name)
-    {
-        try {
-            $term = $this->$name();
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
+    protected function getDefaultFactoryClass(): string 
+    { 
+        return StemTermFactory::class;
     }
 
     /**
-     * Trả về 1 đối tượng trong nhóm 12 địa chi
-     * 
-     * @param string|int $key 
-     * @return StemTerm 
-     * @throws ReflectionException 
-     * @throws Exception 
+     * {@inheritdoc}
      */
-    public function term(string|int $key): StemTerm
-    {
-        return $this->factory->getTerm($key);
+    protected function getTotalTerms(): int 
+    { 
+        return 10;
     }
 
-    /**
-     * Trả về toàn bộ 10 Thiên can
-     * 
-     * @return array 
-     * @throws ReflectionException 
-     * @throws Exception 
-     */
-    public function all(): array
-    {
-        $terms = [];
-
-        for ($i = 1; $i <= 10; $i ++) {
-            array_push($terms, $this->term($i));
-        }
-
-        return $terms;
-    }
 }
