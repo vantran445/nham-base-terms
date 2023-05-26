@@ -22,7 +22,12 @@ trait HasAliasTrait
             $alias = explode(',', $alias);
         }
 
-        $this->alias = array_merge($this->getAliases(), $alias);
+        foreach ($alias as $a) {
+            if (!$this->hasAlias($a)) {
+                array_push($this->alias, $a);
+            }
+        }
+
         return $this;
     }
 
