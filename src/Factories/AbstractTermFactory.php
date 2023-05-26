@@ -26,18 +26,13 @@ abstract class AbstractTermFactory
     private $terms = [];
 
     /**
-     * @var TermInterface[]
-     */
-    private static $singletons = [];
-
-    /**
      * Khởi tạo một đối tượng
      * 
      * @param string|int $key 
      * @return null|TermInterface 
      * @throws ReflectionException 
      */
-    protected function makeTerm(string|int $key): null|TermInterface
+    protected function makeTerm(string|int $key): ?TermInterface
     {
         $ref = new ReflectionClass($this->getTermClass());
         $attributes = $ref->getAttributes();
@@ -102,8 +97,12 @@ abstract class AbstractTermFactory
                 if (
                     $key === $term->getOrder() ||
                     $key === $term->getKey() ||
-                    in_array($key, $term->getAlias())
+                    $term->hasAlias($key)
                 ) {
+                    if (is_string($key)) {
+                        $term->setAlias($key);
+                    }
+
                     $this->setTerm($key, $term);
                     return $term;
                 }

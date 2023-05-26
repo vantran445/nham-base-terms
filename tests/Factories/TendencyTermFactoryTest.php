@@ -44,9 +44,9 @@ class TendencyTermFactoryTest extends TestCase
         $term = $this->factory()->getTerm(1);
 
         $this->assertEquals('a', $term->getKey());
-        $this->assertTrue(in_array('duong', $term->getAlias()));
-        $this->assertTrue(in_array('posive', $term->getAlias()));
-        $this->assertTrue(in_array('yang', $term->getAlias()));
+        $this->assertTrue(in_array('duong', $term->getAliases()));
+        $this->assertTrue(in_array('posive', $term->getAliases()));
+        $this->assertTrue(in_array('yang', $term->getAliases()));
     }
 
     /**
@@ -63,9 +63,9 @@ class TendencyTermFactoryTest extends TestCase
 
 
         $this->assertEquals(2, $term->getOrder());
-        $this->assertTrue(in_array('am', $term->getAlias()));
-        $this->assertTrue(in_array('negative', $term->getAlias()));
-        $this->assertTrue(in_array('yin', $term->getAlias()));
+        $this->assertTrue(in_array('am', $term->getAliases()));
+        $this->assertTrue(in_array('negative', $term->getAliases()));
+        $this->assertTrue(in_array('yin', $term->getAliases()));
     }
 
     /**

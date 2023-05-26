@@ -45,7 +45,7 @@ class ElementTermFactoryTest extends TestCase
 
 
         $this->assertEquals('a', $term->getKey());
-        $this->assertTrue(in_array('moc', $term->getAlias()));
+        $this->assertTrue(in_array('moc', $term->getAliases()));
     }
 
     /**
@@ -62,7 +62,7 @@ class ElementTermFactoryTest extends TestCase
 
 
         $this->assertEquals(2, $term->getOrder());
-        $this->assertTrue(in_array('fire', $term->getAlias()));
+        $this->assertTrue(in_array('fire', $term->getAliases()));
     }
 
     /**
