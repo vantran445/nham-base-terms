@@ -14,5 +14,21 @@ interface HasAlias
      * 
      * @return array 
      */
-    public function getAlias(): array;
+    public function getAliases(): array;
+
+    /**
+     * Kiểm tra 1 đối tượng có bí danh mong muốn không
+     * 
+     * @param string $alias 
+     * @return bool 
+     */
+    public function hasAlias(string $alias): bool;
+
+    /**
+     * Thêm 1 hoặc nhiều bí danh cho đối tượng
+     * 
+     * @param string|array $alias Nếu có nhiều bí danh là chuỗi, phân tách bằng dấu phẩy (,)
+     * @return self 
+     */
+    public function setAlias(string|array $alias): self;
 }

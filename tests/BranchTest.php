@@ -100,4 +100,23 @@ class BranchTest extends TestCase
         $term = $this->branches->term('term_2');
         $this->assertTrue($term->hasAlias('suu'));
     }
+
+    /**
+     * @covers Branch
+     * 
+     * @return void 
+     * @throws ReflectionException 
+     * @throws Exception 
+     */
+    public function testMapping(): void
+    {
+        $alias = 'daybranch';
+
+        $this->branches->map(function (Branch $b) use ($alias) {
+            $b->term('tuat')->setAlias($alias);
+        });
+
+        $term = $this->branches->term($alias);
+        $this->assertEquals('k', $term->getKey());
+    }
 }

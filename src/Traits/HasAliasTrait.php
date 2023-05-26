@@ -5,7 +5,7 @@ trait HasAliasTrait
     /**
      * {@inheritdoc}
      */
-    public function getAlias(): array
+    public function getAliases(): array
     {
         return $this->alias;
     }
@@ -22,7 +22,7 @@ trait HasAliasTrait
             $alias = explode(',', $alias);
         }
 
-        $this->alias = array_merge($this->getAlias(), $alias);
+        $this->alias = array_merge($this->getAliases(), $alias);
         return $this;
     }
 
@@ -34,6 +34,6 @@ trait HasAliasTrait
      */
     public function hasAlias(string $alias): bool
     {
-        return in_array($alias, $this->getAlias());
+        return in_array($alias, $this->getAliases());
     }
 }

@@ -36,70 +36,23 @@ use VanTran\NhamBaseTerms\Traits\TermLoopableTrait;
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms
  */
-class Star
+class Star extends AbstractTermHandler
 {
-    use TermLoopableTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultFactoryClass(): string 
+    { 
+        return StarTermFactory::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTotalTerms(): int 
+    { 
+        return 12;
+    }
     
-    /**
-     * @var StarTermFactory Lớp khởi tạo các đối tượng trong nhóm thiên can
-     */
-    private $factory;
-
-    public function __construct()
-    {
-        $this->factory = new StarTermFactory();
-    }
-
-    public function __call($name, $arguments): ?StarTerm
-    {
-        try {
-            $term = $this->term($name);
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
-    }
-
-    public function __get($name)
-    {
-        try {
-            $term = $this->$name();
-        } catch (\Throwable $th) {
-            return null;
-        }
-
-        return $term;
-    }
-
-    /**
-     * Trả về 1 đối tượng trong nhóm 12 địa chi
-     * 
-     * @param string|int $key 
-     * @return StarTerm 
-     * @throws ReflectionException 
-     * @throws Exception 
-     */
-    public function term(string|int $key): StarTerm
-    {
-        return $this->factory->getTerm($key);
-    }
-
-    /**
-     * Trả về toàn bộ 12 thiên tướng
-     * 
-     * @return array 
-     * @throws ReflectionException 
-     * @throws Exception 
-     */
-    public function all(): array
-    {
-        $terms = [];
-
-        for ($i = 1; $i <= 12; $i ++) {
-            array_push($terms, $this->term($i));
-        }
-
-        return $terms;
-    }
 }
