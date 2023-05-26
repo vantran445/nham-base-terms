@@ -127,4 +127,15 @@ abstract class AbstractTermHandler
         $action($this);
         return $this;
     }
+
+    /**
+     * Kiểm tra 1 đối tượng đã được khởi tạo hoặc ánh xạ hay chưa
+     * 
+     * @param int|string $key 
+     * @return bool 
+     */
+    public function hasTerm(int|string $key): bool
+    {
+        return $this->factory->hasTerm($key);
+    }
 }

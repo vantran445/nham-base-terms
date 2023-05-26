@@ -122,4 +122,15 @@ abstract class AbstractTermFactory
 
         return $this->terms[$key];
     }
+
+    /**
+     * Kiểm tra 1 đối tượng đã được khởi tạo hoặc ánh xạ hay chưa
+     * 
+     * @param int|string $key 
+     * @return bool 
+     */
+    public function hasTerm(int|string $key): bool
+    {
+        return $this->isTermInitialized($key);
+    }
 }
