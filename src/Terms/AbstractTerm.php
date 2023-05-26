@@ -19,4 +19,12 @@ abstract class AbstractTerm implements TermInterface
     {
         
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIndex(): int
+    {
+        return $this->getOrder() - 1;
+    }
 }
