@@ -1,6 +1,8 @@
 <?php namespace VanTran\NhamBaseTerms;
 
 use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
+use VanTran\NhamBaseTerms\Terms\AbstractSexagenaryTerm;
+use VanTran\NhamBaseTerms\Terms\BranchTerm;
 
 /**
  * @property Terms\BranchTerm ty
