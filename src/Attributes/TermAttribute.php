@@ -8,15 +8,14 @@ readonly class TermAttribute
     /**
      * Các thuộc tính cho 1 đối tượng cơ bản
      * 
-     * @param int $order 
+     * @param int $index 
      * @param string $key 
-     * @param array $alias 
-     * @return void 
+     * @param string $char
      */
     public function __construct(
-        public int $order,
+        public int $index,
         public string $key,
-        public array $alias = []
+        public string $char,
     )
     {
         

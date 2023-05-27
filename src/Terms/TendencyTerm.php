@@ -9,6 +9,6 @@ use VanTran\NhamBaseTerms\Contracts\TendencyInterface;
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms\Terms
  */
-#[TendencyAttribute(1, 'a', ['duong', 'yang', 'posive'])]
-#[TendencyAttribute(2, 'b', ['am', 'yin', 'negative'])]
+#[TendencyAttribute(0, 'am', 'a')]
+#[TendencyAttribute(1, 'duong', 'b')]
 final class TendencyTerm extends AbstractTerm implements TendencyInterface {}

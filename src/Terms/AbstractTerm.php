@@ -1,20 +1,15 @@
 <?php namespace VanTran\NhamBaseTerms\Terms;
 
+use Exception;
 use VanTran\NhamBaseTerms\Contracts\TermInterface;
-use VanTran\NhamBaseTerms\Traits\HasAliasTrait;
-use VanTran\NhamBaseTerms\Traits\HasOrderTrait;
-use VanTran\NhamBaseTerms\Traits\HasKeyTrait;
 
 abstract class AbstractTerm implements TermInterface
 {
-    use HasOrderTrait;
-    use HasKeyTrait;
-    use HasAliasTrait;
-
     public function __construct(
-        public readonly int $order,
+        public readonly int $index,
         public readonly string $key,
-        protected array $alias = []
+        public readonly string $char,
+        protected array $aliases = []
     )
     {
         
@@ -25,6 +20,50 @@ abstract class AbstractTerm implements TermInterface
      */
     public function getIndex(): int
     {
-        return $this->getOrder() - 1;
+        return $this->index;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChar(): string
+    {
+        return $this->char;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasAlias(string $alias): bool
+    {
+        return in_array($alias, $this->getAliases());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases(): array
+    {
+        return $this->aliases;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addAlias(string $alias): void
+    {
+        if ($this->hasAlias($alias)) {
+            throw new Exception("The alias arealy exists.");
+        }
+
+        array_push($this->aliases, $alias);
     }
 }

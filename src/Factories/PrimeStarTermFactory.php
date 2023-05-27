@@ -1,11 +1,11 @@
 <?php namespace VanTran\NhamBaseTerms\Factories;
 
-use VanTran\NhamBaseTerms\Contracts\StemTermInterface;
-use VanTran\NhamBaseTerms\Terms\StemTerm;
+use VanTran\NhamBaseTerms\Contracts\PrimeStarTermInterface;
+use VanTran\NhamBaseTerms\Terms\PrimeStarTerm;
 
-class StemTermFactory extends AbstractTermFactory
+class PrimeStarTermFactory extends AbstractTermFactory
 {
-    public const TERM_CLASS = StemTerm::class;
+    public const TERM_CLASS = PrimeStarTerm::class;
 
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class StemTermFactory extends AbstractTermFactory
     /**
      * {@inheritdoc}
      */
-    public function term(mixed $term): StemTermInterface
+    public function term(mixed $term): PrimeStarTermInterface
     {
         return parent::term($term);
     }

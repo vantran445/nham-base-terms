@@ -4,13 +4,15 @@ use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
-use VanTran\NhamBaseTerms\Factories\BranchTermFactory;
+use VanTran\NhamBaseTerms\Factories\PrimeStarTermFactory;
+use VanTran\NhamBaseTerms\Terms\AbstractSexagenaryTerm;
+use VanTran\NhamBaseTerms\Terms\StarTerm;
 
-class BranchTermFactoryTest extends TestCase
+class PrimeStarTermFactoryTest extends TestCase
 {
     /**
      * 
-     * @var BranchTermFactory
+     * @var PrimeStarTermFactory
      */
     private $factory;
 
@@ -19,11 +21,11 @@ class BranchTermFactoryTest extends TestCase
      */
     public function setup(): void
     {
-        $this->factory = new BranchTermFactory();
+        $this->factory = new PrimeStarTermFactory();
     }
 
     /**
-     * @covers BranchTerm
+     * @covers PrimeStarTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -34,13 +36,14 @@ class BranchTermFactoryTest extends TestCase
     {
         $term = $this->factory->term(0);
 
-        $this->assertEquals('ty', $term->getKey());
+        $this->assertEquals('hau', $term->getKey());
+        $this->assertEquals('a', $term->getChar());
         $this->assertTrue($term->getElement() === Element::thuy());
         $this->assertTrue($term->getTendency() === Tendency::duong());
     }
 
     /**
-     * @covers BranchTerm
+     * @covers PrimeStarTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -49,14 +52,14 @@ class BranchTermFactoryTest extends TestCase
      */
     public function testGetInstanceByChar(): void
     {
-        $term = $this->factory->term('b');
+        $term = $this->factory->term('e');
 
-        $this->assertEquals(1, $term->getIndex());
-        $this->assertEquals('suu', $term->getKey());
+        $this->assertEquals(4, $term->getIndex());
+        $this->assertEquals('cau', $term->getKey());
     }
 
     /**
-     * @covers BranchTerm
+     * @covers PrimeStarTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -65,14 +68,14 @@ class BranchTermFactoryTest extends TestCase
      */
     public function testGetInstanceByKey(): void
     {
-        $term = $this->factory->term('hoi');
-
-        $this->assertEquals(11, $term->getIndex());
-        $this->assertEquals('l', $term->getChar());
+        $term = $this->factory->term('long');
+        
+        $this->assertEquals('c', $term->getChar());
+        $this->assertTrue($term->getElement() === Element::moc());
     }
 
     /**
-     * @covers BranchTerm
+     * @covers PrimeStarTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -81,32 +84,9 @@ class BranchTermFactoryTest extends TestCase
      */
     public function testSingletonInstance(): void
     {
-        $term = $this->factory->term('mao');
-        $refTerm = $this->factory->term(3);
+        $term = $this->factory->term('ho');
+        $refTerm = $this->factory->term(8);
 
         $this->assertTrue($term === $refTerm);
-    }
-
-    /**
-     * @covers BranchTerm
-     * 
-     * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     * @throws ExpectationFailedException 
-     */
-    public function testRef(): void
-    {
-        $term = $this->factory->term(function (BranchTermFactory $f) {
-            if (!$f->isMapped('love')) {
-                $f->map('love', 'ngo', false);
-            }
-
-            return 'mui';
-        });
-
-        $this->assertEquals('mui', $term->getKey());
-        $this->assertEquals('ngo', $this->factory->term('love')->getKey());
-        $this->assertTrue($this->factory->isMapped('love'));
     }
 }

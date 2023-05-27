@@ -16,9 +16,9 @@ class ElementTest extends TestCase
      */
     public function testResolvingNormalWay(): void
     {
-        $term = Element::term('water');
+        $term = Element::term('thuy');
 
-        $this->assertEquals(5, $term->getOrder());
+        $this->assertEquals(4, $term->getIndex());
         $this->assertTrue($term === Element::term('e'));
     }
 
@@ -32,8 +32,8 @@ class ElementTest extends TestCase
     {
         $term = Element::kim();
 
-        $this->assertEquals(4, $term->getOrder());
-        $this->assertTrue($term === Element::metal());
+        $this->assertEquals(3, $term->getIndex());
+        $this->assertTrue($term === Element::term(3));
         $this->assertTrue($term === Element::d());
     }
 
@@ -47,6 +47,6 @@ class ElementTest extends TestCase
     {
         $el = new Element();
 
-        $this->assertTrue(Element::earth() === $el->earth());
+        $this->assertTrue(Element::tho() === $el->tho());
     }
 }

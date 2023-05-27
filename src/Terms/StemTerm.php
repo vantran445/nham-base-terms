@@ -1,18 +1,25 @@
 <?php namespace VanTran\NhamBaseTerms\Terms;
 
-use VanTran\NhamBaseTerms\Attributes\SexagenaryTermAttribute;
+use VanTran\NhamBaseTerms\Attributes\BaseNhamTermAttribute;
+use VanTran\NhamBaseTerms\Contracts\StemTermInterface;
 
-#[SexagenaryTermAttribute(1, 'a', 1, 1, ['giap', 'forest'])]
-#[SexagenaryTermAttribute(2, 'b', 1, 2, ['at', 'grass'])]
-#[SexagenaryTermAttribute(3, 'c', 2, 1, ['binh', 'firepower'])]
-#[SexagenaryTermAttribute(4, 'd', 2, 2, ['dinh', 'sparks'])]
-#[SexagenaryTermAttribute(5, 'e', 3, 1, ['mau', 'fertile'])]
-#[SexagenaryTermAttribute(6, 'f', 3, 2, ['ky', 'barren'])]
-#[SexagenaryTermAttribute(7, 'g', 4, 1, ['canh', 'hardmetal'])]
-#[SexagenaryTermAttribute(8, 'h', 4, 2, ['tan', 'rawmetal'])]
-#[SexagenaryTermAttribute(9, 'i', 5, 1, ['nham', 'ocean'])]
-#[SexagenaryTermAttribute(10, 'j', 5, 2, ['quy', 'rainwater'])]
-class StemTerm extends AbstractSexagenaryTerm
+#[BaseNhamTermAttribute(0, 'giap', 'a', 'moc', 'duong')]
+#[BaseNhamTermAttribute(1, 'at', 'b', 'moc', 'am')]
+#[BaseNhamTermAttribute(2, 'binh', 'c', 'hoa', 'duong')]
+#[BaseNhamTermAttribute(3, 'dinh', 'd', 'hoa', 'am')]
+#[BaseNhamTermAttribute(4, 'mau', 'e', 'tho', 'duong')]
+#[BaseNhamTermAttribute(5, 'ky', 'f', 'tho', 'am')]
+#[BaseNhamTermAttribute(6, 'canh', 'g', 'kim', 'duong')]
+#[BaseNhamTermAttribute(7, 'tan' ,'h', 'kim', 'am')]
+#[BaseNhamTermAttribute(8, 'nham' ,'i', 'thuy', 'duong')]
+#[BaseNhamTermAttribute(9, 'quy', 'j', 'thuy', 'am')]
+class StemTerm extends AbstractNhamBaseTerm implements StemTermInterface
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    public function getType(): int|string 
+    { 
+        return 'stem';
+    }
 }

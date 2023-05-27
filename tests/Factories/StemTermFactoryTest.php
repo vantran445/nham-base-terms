@@ -5,8 +5,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 use VanTran\NhamBaseTerms\Factories\StemTermFactory;
-use VanTran\NhamBaseTerms\Terms\AbstractSexagenaryTerm;
-use VanTran\NhamBaseTerms\Terms\StemTerm;
 
 class StemTermFactoryTest extends TestCase
 {
@@ -25,25 +23,24 @@ class StemTermFactoryTest extends TestCase
     }
 
     /**
-     * @covers StemTerm
+     * @covers StemTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
      * @throws Exception 
      * @throws ExpectationFailedException 
      */
-    public function testGetInstanceByOrder(): void
+    public function testGetInstanceIndex(): void
     {
-        $term = $this->factory->getTerm(1);
+        $term = $this->factory->term(1);
 
-        $this->assertInstanceOf(StemTerm::class, $term);
-        $this->assertEquals('a', $term->getKey());
-        $this->assertTrue($term->getElement() === Element::wood());
-        $this->assertTrue($term->getTendency() === Tendency::posive());
+        $this->assertEquals('b', $term->getChar());
+        $this->assertTrue($term->getElement() === Element::moc());
+        $this->assertTrue($term->getTendency() === Tendency::am());
     }
 
     /**
-     * @covers StemTerm
+     * @covers StemTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -52,29 +49,29 @@ class StemTermFactoryTest extends TestCase
      */
     public function testGetInstanceByKey(): void
     {
-        $term = $this->factory->getTerm('e');
+        $term = $this->factory->term('mau');
 
-        $this->assertEquals(5, $term->getOrder());
-        $this->assertTrue($term->hasAlias('mau'));
+        $this->assertEquals(4, $term->getIndex());
+        $this->assertEquals('e', $term->getChar());
     }
 
     /**
-     * @covers StemTerm
+     * @covers StemTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
      * @throws Exception 
      * @throws ExpectationFailedException 
      */
-    public function testGetInstanceByAlias(): void
+    public function testGetInstanceByChar(): void
     {
-        $term = $this->factory->getTerm('canh');
+        $term = $this->factory->term('g');
         
-        $this->assertEquals('g', $term->getKey());
+        $this->assertEquals('canh', $term->getKey());
     }
 
     /**
-     * @covers StemTerm
+     * @covers StemTermFactory
      * 
      * @return void 
      * @throws ReflectionException 
@@ -83,34 +80,9 @@ class StemTermFactoryTest extends TestCase
      */
     public function testSingletonInstance(): void
     {
-        $term = $this->factory->getTerm('nham');
-        $refTerm = $this->factory->getTerm(9);
+        $term = $this->factory->term('nham');
+        $refTerm = $this->factory->term(8);
 
         $this->assertTrue($term === $refTerm);
-    }
-
-    /**
-     * @covers StemTerm
-     * 
-     * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     * @throws ExpectationFailedException 
-     */
-    public function testRef(): void
-    {
-        $term = $this->factory->getTerm('binh');
-        
-        $this->assertNull($term->getRef('harmony'));
-
-        $love = $term->getRef(function(AbstractSexagenaryTerm $t) {
-            if (!$t->hasRef('harmony')) {
-                $t->setRef('harmony', $this->factory->getTerm('tan'));
-            }
-
-            return 'harmony';
-        });
-
-        $this->assertTrue($love === $this->factory->getTerm(8));
     }
 }

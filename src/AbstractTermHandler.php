@@ -2,6 +2,7 @@
 
 use Closure;
 use Exception;
+use ReflectionException;
 use VanTran\NhamBaseTerms\Contracts\SexagenaryTermInterface;
 use VanTran\NhamBaseTerms\Factories\AbstractTermFactory;
 
@@ -13,13 +14,6 @@ abstract class AbstractTermHandler
      * @return string 
      */
     abstract protected function getDefaultFactoryClass(): string;
-
-    /**
-     * Trả về tổng số đối tượng trong nhóm, với Địa chi và thiên tướng là 12, trong khi với Thiên can là 10
-     * 
-     * @return int 
-     */
-    abstract protected function getTotalTerms(): int;
 
     public function __construct(private ?AbstractTermFactory $factory = null)
     {
@@ -88,13 +82,7 @@ abstract class AbstractTermHandler
      */
     public function all(): array
     {
-        $terms = [];
-
-        for ($i = 1; $i <= $this->getTotalTerms(); $i ++) {
-            array_push($terms, $this->term($i));
-        }
-
-        return $terms;
+        return $this->factory->all();
     }
 
     /**
@@ -117,25 +105,27 @@ abstract class AbstractTermHandler
     }
 
     /**
-     * Thực hiện ánh xạ dữ liệu hoặc công việc bất kỳ thông qua 1 hàm ẩn danh
+     * Kiểm tra 1 bí danh có tồn tại
      * 
-     * @param Closure $action
-     * @return AbstractTermHandler 
+     * @param string $key 
+     * @return bool 
      */
-    public function map(Closure $action): self
+    public function hasAlias(string $key): bool
     {
-        $action($this);
-        return $this;
+        return $this->factory->hasAlias($key);
     }
 
     /**
-     * Kiểm tra 1 đối tượng đã được khởi tạo hoặc ánh xạ hay chưa
+     * Thêm 1 bí danh mới cho đối tượng
      * 
-     * @param int|string $key 
-     * @return bool 
+     * @param string $key 
+     * @param int|string $term 
+     * @return void 
+     * @throws Exception 
+     * @throws ReflectionException 
      */
-    public function hasTerm(int|string $key): bool
+    public function addAlias(string $key, int|string $term): void
     {
-        return $this->factory->hasTerm($key);
+        $this->factory->setAlias($key, $term);
     }
 }

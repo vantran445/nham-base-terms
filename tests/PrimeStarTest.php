@@ -4,22 +4,22 @@ use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
-use VanTran\NhamBaseTerms\Star;
+use VanTran\NhamBaseTerms\PrimeStar;
 
-class StarTest extends TestCase
+class PrimeStarTest extends TestCase
 {
     /**
-     * @var Star
+     * @var PrimeStar
      */
     private $stars;
 
     public function setup(): void
     {
-        $this->stars = new Star();
+        $this->stars = new PrimeStar();
     }
 
     /**
-     * @covers Star
+     * @covers PrimeStar
      * 
      * @return void 
      * @throws ReflectionException 
@@ -29,13 +29,13 @@ class StarTest extends TestCase
     public function testSingleton(): void
     {
         $term1 = $this->stars->term('xa');
-        $term2 = $this->stars->term(2);
+        $term2 = $this->stars->term(5);
 
         $this->assertTrue($term1 === $term2);
     }
 
     /**
-     * @covers Star
+     * @covers PrimeStar
      * 
      * @return void 
      * @throws ReflectionException 
@@ -44,11 +44,11 @@ class StarTest extends TestCase
      */
     public function testMagicMethod(): void
     {
-        $this->assertTrue($this->stars->term(10) === $this->stars->vu());
+        $this->assertTrue($this->stars->term(10) === $this->stars->khong());
     }
 
     /**
-     * @covers Star
+     * @covers PrimeStar
      * 
      * @return void 
      * @throws ReflectionException 
@@ -57,11 +57,11 @@ class StarTest extends TestCase
      */
     public function testMagicProp(): void
     {
-        $this->assertTrue($this->stars->term(7) === $this->stars->khong);
+        $this->assertTrue($this->stars->term(7) === $this->stars->thuong);
     }
 
     /**
-     * @covers Star
+     * @covers PrimeStar
      * 
      * @return void 
      * @throws ReflectionException 
@@ -72,16 +72,5 @@ class StarTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->stars->term(13);
-    }
-
-    /**
-     * @covers Star
-     * 
-     * @return void 
-     * @throws ExpectationFailedException 
-     */
-    public function testFailure(): void
-    {
-        $this->assertNull($this->stars->hello());
     }
 }
