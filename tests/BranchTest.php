@@ -5,7 +5,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 use VanTran\NhamBaseTerms\Branch;
-use VanTran\NhamBaseTerms\Contracts\SexagenaryTermInterface;
 
 class BranchTest extends TestCase
 {
@@ -27,25 +26,9 @@ class BranchTest extends TestCase
      * @throws Exception 
      * @throws ExpectationFailedException 
      */
-    public function testSingleton(): void
-    {
-        $term1 = $this->branches->term('dan');
-        $term2 = $this->branches->term(3);
-
-        $this->assertTrue($term1 === $term2);
-    }
-
-    /**
-     * @covers Branch
-     * 
-     * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     * @throws ExpectationFailedException 
-     */
     public function testMagicMethod(): void
     {
-        $this->assertTrue($this->branches->term(12) === $this->branches->pig());
+        $this->assertTrue($this->branches->term(11) === $this->branches->hoi());
     }
 
     /**
@@ -58,7 +41,7 @@ class BranchTest extends TestCase
      */
     public function testMagicProp(): void
     {
-        $this->assertTrue($this->branches->term(7) === $this->branches->horse);
+        $this->assertTrue($this->branches->term(6) === $this->branches->ngo);
     }
 
     /**
@@ -75,7 +58,7 @@ class BranchTest extends TestCase
         $keys = range('a', 'l');
 
         foreach ($terms as $index => $terms) {
-            $this->assertEquals($keys[$index], $terms->getKey());
+            $this->assertEquals($keys[$index], $terms->getChar());
         }
     }
 
@@ -92,14 +75,10 @@ class BranchTest extends TestCase
         $index = 0;
 
         $this->branches->each(function (BranchTerm $term) use (&$index, $keys) {
-            $term->setAlias('term_' . $index + 1);
-            $this->assertEquals($keys[$index], $term->getKey());
+            $this->assertEquals($keys[$index], $term->getChar());
 
             $index ++;
         });
-
-        $term = $this->branches->term('term_2');
-        $this->assertTrue($term->hasAlias('suu'));
     }
 
     /**
@@ -108,31 +87,14 @@ class BranchTest extends TestCase
      * @return void 
      * @throws ReflectionException 
      * @throws Exception 
+     * @throws ExpectationFailedException 
      */
-    public function testMapping(): void
+    public function testGetTermByCustomAlias(): void
     {
-        $alias = 'daybranch';
+        $key = 'month_branch';
+        $term = $this->branches->term('ti');
+        $term->addAlias($key);
 
-        $this->branches->map(function (Branch $b) use ($alias) {
-            $b->term('tuat')->setAlias($alias);
-        });
-
-        $term = $this->branches->term($alias);
-        $this->assertEquals('k', $term->getKey());
-    }
-
-    /**
-     * @covers Branch
-     * 
-     * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     */
-    public function testMappedTerm(): void
-    {
-        $this->assertFalse($this->branches->hasTerm('abcdrd'));
-        $this->branches->term('than')->setAlias('abcdrd');
-        $this->assertInstanceOf(SexagenaryTermInterface::class, $this->branches->term('abcdrd'));
-
+        $this->assertTrue($term === $this->branches->term($key));
     }
 }

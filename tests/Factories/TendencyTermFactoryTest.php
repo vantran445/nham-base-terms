@@ -41,12 +41,27 @@ class TendencyTermFactoryTest extends TestCase
      */
     public function testGetInstanceByIndex(): void
     {
-        $term = $this->factory()->getTerm(1);
+        $term = $this->factory()->term(0);
 
-        $this->assertEquals('a', $term->getKey());
-        $this->assertTrue(in_array('duong', $term->getAliases()));
-        $this->assertTrue(in_array('posive', $term->getAliases()));
-        $this->assertTrue(in_array('yang', $term->getAliases()));
+        $this->assertEquals('a', $term->getChar());
+        $this->assertEquals('am', $term->getKey());
+    }
+
+    /**
+     * @covers TendencyTermFactory
+     * 
+     * @return void 
+     * @throws ReflectionException 
+     * @throws Exception 
+     * @throws ExpectationFailedException 
+     */
+    public function testGetInstanceByChar(): void
+    {
+        $term = $this->factory()->term('b');
+
+
+        $this->assertEquals(1, $term->getIndex());
+        $this->assertEquals('duong', $term->getKey());
     }
 
     /**
@@ -59,29 +74,10 @@ class TendencyTermFactoryTest extends TestCase
      */
     public function testGetInstanceByKey(): void
     {
-        $term = $this->factory()->getTerm('b');
+        $term = $this->factory()->term('am');
 
-
-        $this->assertEquals(2, $term->getOrder());
-        $this->assertTrue(in_array('am', $term->getAliases()));
-        $this->assertTrue(in_array('negative', $term->getAliases()));
-        $this->assertTrue(in_array('yin', $term->getAliases()));
-    }
-
-    /**
-     * @covers TendencyTermFactory
-     * 
-     * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     * @throws ExpectationFailedException 
-     */
-    public function testGetInstanceByAlias(): void
-    {
-        $term = $this->factory()->getTerm('am');
-
-        $this->assertEquals(2, $term->getOrder());
-        $this->assertEquals('b', $term->getKey());
+        $this->assertEquals(0, $term->getIndex());
+        $this->assertEquals('a', $term->getChar());
     }
 
     /**
@@ -94,8 +90,8 @@ class TendencyTermFactoryTest extends TestCase
      */
     public function testReference(): void
     {
-        $term1 = $this->factory()->getTerm('duong');
-        $term2 = $this->factory()->getTerm(1);
+        $term1 = $this->factory()->term('duong');
+        $term2 = $this->factory()->term(1);
 
         $this->assertTrue($term1 === $term2);
     }

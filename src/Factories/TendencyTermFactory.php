@@ -1,7 +1,5 @@
 <?php namespace VanTran\NhamBaseTerms\Factories;
 
-use ReflectionException;
-use Exception;
 use VanTran\NhamBaseTerms\Contracts\TendencyInterface;
 use VanTran\NhamBaseTerms\Terms\TendencyTerm;
 
@@ -24,15 +22,13 @@ class TendencyTermFactory extends AbstractTermFactory
     }
 
     /**
-     * Trả về đối tượng Âm hoặc Dương
+     * Trả về đối tượng trong nhóm Âm hoặc Dương
      * 
-     * @param int|string $key 
+     * @param mixed $term 
      * @return TendencyInterface 
-     * @throws ReflectionException 
-     * @throws Exception 
      */
-    public function getTerm(int|string $key): TendencyInterface
+    public function term(mixed $term): TendencyInterface
     {
-        return parent::getTerm($key);
+        return parent::term($term);
     }
 }

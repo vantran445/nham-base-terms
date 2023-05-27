@@ -4,16 +4,16 @@ use VanTran\NhamBaseTerms\Attributes\ElementAttribute;
 use VanTran\NhamBaseTerms\Contracts\ElementInterface;
 
 /**
- * Ngũ hành
+ * Ngũ hành - Các thuộc tính mặc định được sắp xếp theo cảm hứng của 4 mùa trong năm, bắt đầu với mùa Xuân thuộc Mộc.
  * 
  * @author Văn Trần <caovan.info@gmail.com>
  * @package VanTran\NhamBaseTerms\Terms
  */
-#[ElementAttribute(1, 'a', ['moc', 'wood'])]
-#[ElementAttribute(2, 'b', ['hoa', 'fire'])]
-#[ElementAttribute(3, 'c', ['tho', 'earth'])]
-#[ElementAttribute(4, 'd', ['kim', 'metal'])]
-#[ElementAttribute(5, 'e', ['thuy', 'water'])]
+#[ElementAttribute(0, 'moc', 'a')]
+#[ElementAttribute(1, 'hoa', 'b')]
+#[ElementAttribute(2, 'tho', 'c')]
+#[ElementAttribute(3, 'kim', 'd')]
+#[ElementAttribute(4, 'thuy', 'e')]
 final class ElementTerm extends AbstractTerm implements ElementInterface
 {
 

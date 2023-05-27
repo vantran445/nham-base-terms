@@ -3,14 +3,15 @@
 use Attribute;
 
 #[Attribute(Attribute::IS_REPEATABLE|Attribute::TARGET_ALL)]
-readonly class SexagenaryTermAttribute
+readonly class BaseNhamTermAttribute
 {
     public function __construct(
-        public int $order,
+        public int $index,
         public string $key,
+        public string $char,
         public string|int $element,
         public string|int $tendency,
-        public array $alias = []
+        public array $aliases = []
     )
     {
         

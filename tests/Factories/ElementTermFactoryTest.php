@@ -41,11 +41,11 @@ class ElementTermFactoryTest extends TestCase
      */
     public function testGetInstanceByIndex(): void
     {
-        $term = $this->factory()->getTerm(1);
+        $term = $this->factory()->term(0);
 
 
-        $this->assertEquals('a', $term->getKey());
-        $this->assertTrue(in_array('moc', $term->getAliases()));
+        $this->assertEquals('a', $term->getChar());
+        $this->assertEquals('moc', $term->getKey());
     }
 
     /**
@@ -58,27 +58,22 @@ class ElementTermFactoryTest extends TestCase
      */
     public function testGetInstanceByKey(): void
     {
-        $term = $this->factory()->getTerm('b');
+        $term = $this->factory()->term('hoa');
 
-
-        $this->assertEquals(2, $term->getOrder());
-        $this->assertTrue(in_array('fire', $term->getAliases()));
+        $this->assertEquals(1, $term->getIndex());
+        $this->assertEquals('b', $term->getChar());
     }
 
     /**
      * @covers ElementTermFactory
-     * 
      * @return void 
-     * @throws ReflectionException 
-     * @throws Exception 
-     * @throws ExpectationFailedException 
      */
-    public function testGetInstanceByAlias(): void
+    public function testGetTermByChar(): void
     {
-        $term = $this->factory()->getTerm('tho');
+        $term = $this->factory()->term('c');
 
-        $this->assertEquals(3, $term->getOrder());
-        $this->assertEquals('c', $term->getKey());
+        $this->assertEquals(2, $term->getIndex());
+        $this->assertEquals('tho', $term->getKey());
     }
 
     /**
@@ -91,8 +86,8 @@ class ElementTermFactoryTest extends TestCase
      */
     public function testReference(): void
     {
-        $term1 = $this->factory()->getTerm('kim');
-        $term2 = $this->factory()->getTerm(4);
+        $term1 = $this->factory()->term('d');
+        $term2 = $this->factory()->term(3);
 
         $this->assertTrue($term1 === $term2);
     }

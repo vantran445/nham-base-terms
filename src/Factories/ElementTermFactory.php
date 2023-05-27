@@ -1,5 +1,7 @@
 <?php namespace VanTran\NhamBaseTerms\Factories;
 
+use Exception;
+use VanTran\NhamBaseTerms\Contracts\ElementInterface;
 use VanTran\NhamBaseTerms\Terms\ElementTerm;
 
 /**
@@ -20,8 +22,15 @@ class ElementTermFactory extends AbstractTermFactory
         return self::TERM_CLASS;
     }
 
-    public function getTerm(int|string $key): ElementTerm
+    /**
+     * Trả về 1 đối tượng trong nhóm Ngũ hành
+     * 
+     * @param mixed $term 
+     * @return ElementInterface 
+     * @throws Exception 
+     */
+    public function term(mixed $term): ElementInterface
     {
-        return parent::getTerm($key);
+        return parent::term($term);
     }
 }

@@ -16,9 +16,9 @@ class TendencyTest extends TestCase
      */
     public function testResolvingNormalWay(): void
     {
-        $term = Tendency::term('yang');
+        $term = Tendency::term('am');
 
-        $this->assertEquals(1, $term->getOrder());
+        $this->assertEquals(0, $term->getIndex());
         $this->assertTrue($term === Tendency::term('a'));
     }
 
@@ -30,9 +30,9 @@ class TendencyTest extends TestCase
      */
     public function testResolvingMagicWay(): void
     {
-        $term = Tendency::negative();
+        $term = Tendency::duong();
 
-        $this->assertEquals(2, $term->getOrder());
+        $this->assertEquals(1, $term->getIndex());
         $this->assertTrue($term === Tendency::term('b'));
     }
 
@@ -46,6 +46,6 @@ class TendencyTest extends TestCase
     {
         $ten = new Tendency();
 
-        $this->assertTrue(Tendency::posive() === $ten->posive());
+        $this->assertTrue(Tendency::duong() === $ten->term('b'));
     }
 }

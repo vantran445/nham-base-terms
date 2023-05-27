@@ -18,7 +18,7 @@ class Element
 {
     private static $factory;
 
-    protected static function getFactory(): ElementTermFactory
+    protected static function factory(): ElementTermFactory
     {
         if (!self::$factory) {
             self::$factory = new ElementTermFactory();
@@ -28,9 +28,7 @@ class Element
     }
 
     /**
-     * Trả về đối tượng trong nhóm ngũ hành thông qua magic call, ví dụ,muốn lấy hành Kim chỉ cần gọi Element::metal().
-     * Các phương thức được hỗ trợ gợi ý gõ dưới dạng tiếng Anh, nhưng cũng có thể được gọi ra thông qua tiếng Việt, 
-     * chẳng hạn hành hỏa Element:fire() tương đương với Element::hoa()
+     * Trả về đối tượng trong nhóm ngũ hành thông qua magic call, ví dụ,muốn lấy hành Kim chỉ cần gọi Element::kim()
      * 
      * @param string $name 
      * @param mixed $arguments 
@@ -50,22 +48,12 @@ class Element
     /**
      * Trả về đối tượng mục tiêu trong nhóm Ngũ hành
      * 
-     * @param int|string|(callable(): int|string) $attr 
+     * @param mixed $term 
      * @return ElementInterface 
      * @throws Throwable 
      */
-    public static function term(int|string|callable $attr): ElementInterface
+    public static function term(mixed $term): ElementInterface
     {
-        $key = is_callable($attr)
-            ? $attr()
-            : $attr;
-
-        try {
-            $term = self::getFactory()->getTerm($key);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-
-        return $term;
+        return self::factory()->term($term);
     }
 }

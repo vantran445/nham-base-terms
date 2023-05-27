@@ -1,20 +1,28 @@
 <?php namespace VanTran\NhamBaseTerms\Terms;
 
-use VanTran\NhamBaseTerms\Attributes\SexagenaryTermAttribute;
+use VanTran\NhamBaseTerms\Attributes\BaseNhamTermAttribute;
+use VanTran\NhamBaseTerms\Contracts\BranchTermInterface;
 
-#[SexagenaryTermAttribute(1, 'a', 5, 1, ['ty', 'rat'])]
-#[SexagenaryTermAttribute(2, 'b', 3, 2, ['suu', 'buffalo'])]
-#[SexagenaryTermAttribute(3, 'c', 1, 1, ['dan', 'tiger'])]
-#[SexagenaryTermAttribute(4, 'd', 1, 2, ['mao', 'cat'])]
-#[SexagenaryTermAttribute(5, 'e', 3, 1, ['thin', 'dragon'])]
-#[SexagenaryTermAttribute(6, 'f', 2, 2, ['ti', 'snake'])]
-#[SexagenaryTermAttribute(7, 'g', 2, 1, ['ngo', 'horse'])]
-#[SexagenaryTermAttribute(8, 'h', 3, 2, ['mui', 'goat'])]
-#[SexagenaryTermAttribute(9, 'i', 4, 1, ['than', 'monkey'])]
-#[SexagenaryTermAttribute(10, 'j', 4, 2, ['dau', 'rooster'])]
-#[SexagenaryTermAttribute(11, 'k', 3, 1, ['tuat', 'dog'])]
-#[SexagenaryTermAttribute(12, 'l', 5, 2, ['hoi', 'pig'])]
-class BranchTerm extends AbstractSexagenaryTerm
+#[BaseNhamTermAttribute(0, 'ty', 'a', 'thuy', 'duong')]
+#[BaseNhamTermAttribute(1, 'suu', 'b', 'tho', 'am')]
+#[BaseNhamTermAttribute(2, 'dan', 'c', 'moc', 'duong')]
+#[BaseNhamTermAttribute(3, 'mao', 'd', 'moc', 'am')]
+#[BaseNhamTermAttribute(4, 'thin', 'e', 'tho', 'duong')]
+#[BaseNhamTermAttribute(5, 'ti', 'f', 'hoa', 'am')]
+#[BaseNhamTermAttribute(6, 'ngo', 'g', 'hoa', 'duong')]
+#[BaseNhamTermAttribute(7, 'mui', 'h', 'tho', 'am')]
+#[BaseNhamTermAttribute(8, 'than', 'i', 'kim', 'duong')]
+#[BaseNhamTermAttribute(9, 'dau', 'j', 'kim', 'am')]
+#[BaseNhamTermAttribute(10, 'tuat', 'k', 'tho', 'duong')]
+#[BaseNhamTermAttribute(11, 'hoi', 'l', 'thuy', 'am')]
+class BranchTerm extends AbstractNhamBaseTerm implements BranchTermInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getType(): int|string 
+    { 
+        return 'branch';
+    }
 
 }

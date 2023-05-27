@@ -1,5 +1,6 @@
 <?php namespace VanTran\NhamBaseTerms;
 
+use Exception;
 use Throwable;
 use VanTran\NhamBaseTerms\Contracts\TendencyInterface;
 use VanTran\NhamBaseTerms\Factories\TendencyTermFactory;
@@ -15,7 +16,7 @@ class Tendency
 {
     private static $factory;
 
-    protected static function getFactory(): TendencyTermFactory
+    protected static function factory(): TendencyTermFactory
     {
         if (!self::$factory) {
             self::$factory = new TendencyTermFactory();
@@ -47,24 +48,14 @@ class Tendency
     }
 
     /**
-     * Trả về đối tượng mục tiêu trong nhóm Ngũ hành
+     * Trả về đối tượng trong nhóm Âm - Dương
      * 
-     * @param int|string|(callable(): int|string) $attr 
+     * @param mixed $term 
      * @return TendencyInterface 
-     * @throws Throwable 
+     * @throws Exception 
      */
-    public static function term(int|string|callable $attr): TendencyInterface
+    public static function term(mixed $term): TendencyInterface
     {
-        $key = is_callable($attr)
-            ? $attr()
-            : $attr;
-
-        try {
-            $term = self::getFactory()->getTerm($key);
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-
-        return $term;
+        return self::factory()->term($term);
     }
 }
